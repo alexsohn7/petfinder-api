@@ -4,6 +4,7 @@ import pf from "petfinder-client";
 import Results from "./Results";
 import Details from "./Details";
 import { Router, Link } from "@reach/router";
+import SearchParams from "./SearchParams";
 
 const petfinder = pf({
   key: "4c8bee94df59e3db37d639739e2681c0",
@@ -20,6 +21,7 @@ class App extends Component {
         <Router>
           <Results path="/" />
           <Details path="/details/:id" />
+          <SearchParams path="/search-params" />
         </Router>
       </div>
     );
