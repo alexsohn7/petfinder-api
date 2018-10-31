@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
 import pf from "petfinder-client";
+import Results from "./Results";
+import Details from "./Details";
+import { Router, Link } from "@reach/router";
 
 const petfinder = pf({
   key: "4c8bee94df59e3db37d639739e2681c0",
@@ -8,19 +11,16 @@ const petfinder = pf({
 });
 
 class App extends Component {
-  componentDidMount() {
-    const promise = petfinder.breed.list({ animal: "dog" });
-
-    promise.then(console.log, console.error);
-  }
-
   render() {
     return (
-      <div className="App">
-        <h1 onClick={this.handleTitleClick}> Adopt Me! </h1>
-        <Pet name="Luna" animal="dog" breed="Havanese" />
-        <Pet name="Pepper" animal="bird" breed="Cockatiel" />
-        <Pet name="Doink" animal="cat" breed="Mixed" />
+      <div>
+        <Link to="/">
+          <h1> Adopt Me! </h1>
+        </Link>
+        <Router>
+          <Results path="/" />
+          <Details path="/details/:id" />
+        </Router>
       </div>
     );
   }
