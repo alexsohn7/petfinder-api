@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
 import pf from "petfinder-client";
+import { Provider } from "./SearchContext";
 import Results from "./Results";
 import Details from "./Details";
 import { Router, Link } from "@reach/router";
