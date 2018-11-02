@@ -2,56 +2,64 @@ import React, { Component } from "react";
 import { ANIMALS } from "petfinder-client";
 import { Consumer } from "./SearchContext";
 
-class SearchParams extends Component {
+class SearchBox extends Component {
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    this.props.search();
+  };
+
   render() {
     return (
       <Consumer>
         {context => (
           <div className="search-params">
-            <label htmlFor="location">
-              Location
-              <input
-                onChange={this.handleLocationChange}
-                id="location"
-                value={this.state.location}
-                placeholder="Location"
-              />
-            </label>
+            <form onSubmit={this.handleFormSubmit}>
+              <label htmlFor="location">
+                Location
+                <input
+                  onChange={context.handleLocationChange}
+                  id="location"
+                  value={context.location}
+                  placeholder="Location"
+                />
+              </label>
 
-            <label htmlFor="animal">
-              <select
-                id="animal"
-                value={this.state.animal}
-                onChange={this.handleAnimalChange}
-                onBlur={this.handleAnimalChange}
-              >
-                <option />
-                {ANIMALS.map(animal => (
-                  <option key={animal} value={animal}>
-                    {animal}{" "}
-                  </option>
-                ))}
-              </select>
-            </label>
+              <label htmlFor="animal">
+                <select
+                  id="animal"
+                  value={context.animal}
+                  onChange={context.handleAnimalChange}
+                  onBlur={context.handleAnimalChange}
+                >
+                  <option />
+                  {ANIMALS.map(animal => (
+                    <option key={animal} value={animal}>
+                      {animal}{" "}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-            <label htmlFor="breed">
-              Breed
-              <select
-                id="breed"
-                value={this.state.breed}
-                onChange={this.handleBreedChange}
-                onBlur={this.handleBreedChange}
-                disabled={this.state.breeds.length === 0}
-              >
-                <option />
-                {this.state.breeds.map(breed => (
-                  <option key={breed} value={breed}>
-                    {breed}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button> submit </button>
+              <label htmlFor="breed">
+                Breed
+                <select
+                  id="breed"
+                  value={context.breed}
+                  onChange={context.handleBreedChange}
+                  onBlur={context.handleBreedChange}
+                  disabled={context.breeds.length === 0}
+                >
+                  <option />
+                  {context.breeds.map(breed => (
+                    <option key={breed} value={breed}>
+                      {breed}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button> submit </button>
+            </form>
           </div>
         )}
       </Consumer>
@@ -59,4 +67,4 @@ class SearchParams extends Component {
   }
 }
 
-export default SearchParams;
+export default SearchBox;

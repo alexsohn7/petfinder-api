@@ -75,9 +75,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Link to="/">
-          <h1> Adopt Me! </h1>
-        </Link>
+        <header>
+          <Link to="/">Adopt Me!</Link>
+          <Link to="/search-params">
+            <span aria-label="search" role="img">
+              🔍
+            </span>
+          </Link>
+        </header>
         <Provider value={this.state}>
           <Router>
             <Results path="/" />
